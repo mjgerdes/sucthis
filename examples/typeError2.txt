@@ -1,0 +1,1 @@
+if is0 0 then suc 0 else true
