@@ -6,8 +6,8 @@ module SucThis.Eval where
 import SucThis
 import SucThis.Parse
 
-run :: String -> String
-run = f . parseProgram where
+unsafeRun :: String -> String
+unsafeRun = f . parseProgram where
     f (Left error) = show error
     f (Right program) = show $ eval program
 

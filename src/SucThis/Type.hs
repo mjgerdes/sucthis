@@ -3,8 +3,6 @@
 module SucThis.Type where
 
 import SucThis
-import SucThis.Parse
-import SucThis.Eval
 
 import Data.Maybe
 import Data.Either
@@ -26,12 +24,6 @@ errorMsg outerExpr expr expected actual = Left $ unlines $ (outerMsg outerExpr) 
           msgs = ["Type of '" ++ (show expr) ++ "' does not match.",
                   "  expected: " ++ (show expected),
                   "  actual type: " ++ (show actual)]
-
-
-typeCheck :: String -> Either TypeError TypedExpr
-typeCheck p = check $ parseProgram p where
-    check (Left err) = Left $ show err
-    check (Right exprTree) = infer exprTree
 
 typedExpr :: Expr -> Type -> Either TypeError TypedExpr
 typedExpr e1 t1 = Right $ TypedExpr e1 t1
